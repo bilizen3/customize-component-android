@@ -27,7 +27,7 @@
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/appCompatImageView"
+                app:layout_constraintEnd_toStartOf="@+id/ivExpandable"
                 app:layout_constraintHorizontal_bias="0.937"
                 app:layout_constraintStart_toEndOf="@+id/tvExpirationDate"
                 app:layout_constraintTop_toTopOf="parent"
