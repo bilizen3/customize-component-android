@@ -3,10 +3,15 @@ package com.flores.expandablecardview;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
-
 import androidx.appcompat.widget.AppCompatTextView;
-
 import com.flores.expandablecardview.model.ItemExpandableEntity;
+
+/**
+ * ItemExpandableCardView
+ *
+ * @author bill.flores - Avantica
+ * @since 06/25/2019
+ */
 
 public class ItemExpandableCardView extends LinearLayout {
 

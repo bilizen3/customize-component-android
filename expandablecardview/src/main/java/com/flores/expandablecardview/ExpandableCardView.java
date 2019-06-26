@@ -19,12 +19,20 @@ import com.flores.expandablecardview.model.ItemExpandableEntity;
 
 import java.util.List;
 
+/**
+ * ExpandableCardView
+ *
+ * @author bill.flores - Avantica
+ * @since 06/25/2019
+ */
+
 public class ExpandableCardView extends LinearLayout {
+
     private AppCompatTextView tvAmountOfFee, tvNumberOfQuota, tvExpirationDate, tvAmountOfFeeText;
     private LinearLayoutCompat llDetails;
-    private AppCompatImageView ivExpandable;
-    private Context context;
+    private AppCompatImageView ivArrow;
     private boolean expandable;
+    private Context context;
 
     public ExpandableCardView(Context context) {
         super(context);
@@ -45,13 +53,15 @@ public class ExpandableCardView extends LinearLayout {
         this.context = context;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.expandable_card_view, this, true);
+
         tvExpirationDate = findViewById(R.id.tvExpirationDate);
         tvNumberOfQuota = findViewById(R.id.tvNumberOfQuota);
         tvAmountOfFee = findViewById(R.id.tvAmountOfFee);
         tvAmountOfFeeText = findViewById(R.id.tvAmountOfFeeText);
         llDetails = findViewById(R.id.llDetails);
-        ivExpandable = findViewById(R.id.ivExpandable);
-        ivExpandable.setOnClickListener(new OnClickListener() {
+        ivArrow = findViewById(R.id.ivArrow);
+
+        ivArrow.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 hideAndShowListDetails();
@@ -76,26 +86,33 @@ public class ExpandableCardView extends LinearLayout {
         this.tvAmountOfFeeText.setText(amountOfFeeText);
     }
 
-    public void addListDetails(List<ItemExpandableEntity> itemExpandableEntities) {
-        for (ItemExpandableEntity item : itemExpandableEntities) {
-            llDetails.addView(new ItemExpandableCardView(this.context, item));
+    public void addListDetails(List<ItemExpandableCardView> itemExpandableCardViews) {
+        for (ItemExpandableCardView item : itemExpandableCardViews) {
+            llDetails.addView(item);
         }
     }
-
 
     public void hideAndShowListDetails() {
         if (expandable) {
             expandable = false;
-            llDetails.setVisibility(GONE);
-
+            setVisibilityDetails(GONE);
         } else {
             expandable = true;
-            llDetails.setVisibility(VISIBLE);
+            setVisibilityDetails(VISIBLE);
             AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
             anim.setDuration(1000);
             llDetails.startAnimation(anim);
         }
+        rotateArrow();
+    }
 
+    private void setVisibilityDetails(int type) {
+        llDetails.setVisibility(type);
+    }
+
+    private void rotateArrow() {
+        Animation animation = AnimationUtils.loadAnimation(context, R.anim.arrow_rotate);
+        ivArrow.startAnimation(animation);
     }
 
 }

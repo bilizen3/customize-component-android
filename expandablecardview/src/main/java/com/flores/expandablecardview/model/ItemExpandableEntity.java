@@ -1,4 +1,10 @@
 package com.flores.expandablecardview.model;
+/**
+ * ItemExpandableEntity
+ *
+ * @author bill.flores - Avantica
+ * @since 06/25/2019
+ */
 
 public class ItemExpandableEntity {
 
